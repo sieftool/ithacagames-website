@@ -38,7 +38,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.06;margin:0
 .btn-primary{background:var(--coral);color:var(--ink)}
 .btn-primary:hover{background:#ff6f55;transform:translateY(-2px)} .btn-gamefound{background:linear-gradient(135deg,#1fbf74,#4ded9e);color:#15142b} .btn-gamefound:hover{filter:brightness(1.08);transform:translateY(-2px)}
 .btn-ghost{border-color:rgba(224,178,90,.6);color:var(--parchment)}
-.btn-ghost:hover{border-color:var(--gold);background:rgba(224,178,90,.1)}
+.btn-ghost:hover{border-color:var(--gold);background:rgba(224,178,90,.1)} .btn-bgg{background:#3f3b60;color:#fff;box-shadow:inset 0 -3px 0 #fc5000} .btn-bgg:hover{background:#4c4775;transform:translateY(-2px)}
 .actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:2rem}
 
 /* Header */
