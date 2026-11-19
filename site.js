@@ -7,6 +7,7 @@
     return n;
   }
 
+  /* News: one card per post, newest first. A post without a picture shows the studio mark. */
   function renderNews() {
     var list = document.getElementById('posts');
     if (!list || list.children.length) return;
@@ -21,12 +22,22 @@
 
     posts.forEach(function (p) {
       var li = el('li', 'post');
+
+      var media = el('div', 'post-media');
+      if (p.image) {
+        var img = el('img');
+        img.src = p.image;
+        img.alt = '';
+        img.loading = 'lazy';
+        media.appendChild(img);
+      }
+      li.appendChild(media);
+
+      var body = el('div', 'post-body');
       var day = new Date(p.date + 'T00:00:00Z');
       var time = el('time', '', isNaN(day) ? p.date : fmt.format(day));
       time.setAttribute('datetime', p.date);
-      li.appendChild(time);
-
-      var body = el('div');
+      body.appendChild(time);
       body.appendChild(el('h3', '', p.title));
       String(p.text || '').split(/\n\s*\n/).forEach(function (para) {
         if (para.trim()) body.appendChild(el('p', '', para.trim()));
@@ -38,16 +49,6 @@
         body.appendChild(a);
       }
       li.appendChild(body);
-
-      if (p.image) {
-        var img = el('img');
-        img.src = p.image;
-        img.alt = '';
-        img.loading = 'lazy';
-        img.width = 168;
-        img.height = 168;
-        li.appendChild(img);
-      }
       list.appendChild(li);
     });
   }
