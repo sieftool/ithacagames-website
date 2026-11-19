@@ -13,7 +13,7 @@
 */
 window.ITHACA_NEWS = [
   {
-    date: "2026-11-18",
+    date: "2026-11-19",
     title: "Watch the Assertion: The Three Kingdoms trailer",
     text: "The trailer for Assertion: The Three Kingdoms is on YouTube. Watch it and share it with your gaming group.",
     link: "https://www.youtube.com/watch?v=EL9j1pClkqw",
@@ -21,7 +21,7 @@ window.ITHACA_NEWS = [
     image: "images/trailer-poster.jpg"
   },
   {
-    date: "2026-11-18",
+    date: "2026-11-12",
     title: "Our Gamefound campaign preview is open",
     text: "The campaign for Assertion: The Three Kingdoms is coming to Gamefound and the preview page is open. More than 1,300 people follow it already. Follow now to get every update, and a free gift when you pledge.",
     link: "https://gamefound.com/en/projects/ithaca-board-games/assertion-the-three-kingdoms",
@@ -29,7 +29,7 @@ window.ITHACA_NEWS = [
     image: "images/news-follow-wide.jpg"
   },
   {
-    date: "2026-11-18",
+    date: "2026-11-03",
     title: "Welcome to the new Ithaca Games website",
     text: "This is the new home for our games and our news. Come back for updates on Assertion: The Three Kingdoms and on what we are working on next.",
     image: "images/hero-wide-1200.jpg"
