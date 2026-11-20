@@ -273,6 +273,7 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;background:#17100a}
 
 @media (max-width:900px){
   .posts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .follow-label{display:none}
 }
 @media (max-width:860px){
   .game-grid,.studio .wrap{grid-template-columns:minmax(0,1fr)}
@@ -285,7 +286,6 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;background:#17100a}
   .site-footer .cols{grid-template-columns:minmax(0,1fr)}
   .site-nav .nav-cta{display:none}
   .follow{margin-left:auto;margin-right:0}
-  .follow-label{display:none}
   .site-nav ul{gap:4px 22px}
 
 }
@@ -309,8 +309,11 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;background:#17100a}
 }
 @media (max-width:400px){
   .site-header .wrap{column-gap:12px}
-  .follow{gap:8px}
-  .follow img{width:24px;height:24px}
+  .brand{gap:10px}
+  .brand img{width:38px}
+  .brand span{font-size:1.12rem}
+  .follow{gap:6px}
+  .follow img{width:22px;height:22px}
 }
 @media (max-width:335px){
   .follow{display:none}
