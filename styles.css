@@ -103,6 +103,12 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:700;line-height:1.06;letter-s
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
 .brand img{width:44px}
 .brand span{font:700 1.22rem/1 var(--display);letter-spacing:-.01em}
+/* Follow us: small round social marks beside the brand, grey until pointed at */
+.follow{display:flex;align-items:center;gap:10px;margin-right:auto}
+.follow-label{margin-right:2px;font:600 .92rem/1 var(--body);color:var(--muted)}
+.follow a{display:block;border-radius:50%;line-height:0}
+.follow img{width:26px;height:26px;border-radius:50%;filter:grayscale(1);opacity:.6;transition:filter .2s,opacity .2s}
+.follow a:hover img,.follow a:focus-visible img{filter:none;opacity:1}
 .site-nav ul{display:flex;flex-wrap:wrap;align-items:center;gap:4px 28px;list-style:none;margin:0;padding:0}
 .site-nav a:not(.btn){display:block;padding:8px 0;color:var(--text);text-decoration:none;font:600 1rem/1 var(--body);border-bottom:2px solid transparent}
 .site-nav a:not(.btn):hover,.site-nav a[aria-current="page"]{border-color:var(--accent)}
@@ -267,6 +273,7 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;background:#17100a}
 
 @media (max-width:900px){
   .posts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .follow-label{display:none}
 }
 @media (max-width:860px){
   .game-grid,.studio .wrap{grid-template-columns:minmax(0,1fr)}
@@ -278,6 +285,7 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;background:#17100a}
   .portrait{max-width:420px}
   .site-footer .cols{grid-template-columns:minmax(0,1fr)}
   .site-nav .nav-cta{display:none}
+  .follow{margin-left:auto;margin-right:0}
   .site-nav ul{gap:4px 22px}
 
 }
@@ -298,6 +306,17 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;background:#17100a}
 }
 @media (max-width:560px){
   .posts{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:400px){
+  .site-header .wrap{column-gap:12px}
+  .brand{gap:10px}
+  .brand img{width:38px}
+  .brand span{font-size:1.12rem}
+  .follow{gap:6px}
+  .follow img{width:22px;height:22px}
+}
+@media (max-width:335px){
+  .follow{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
