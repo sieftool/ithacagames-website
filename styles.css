@@ -318,6 +318,26 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;background:#17100a}
 @media (max-width:335px){
   .follow{display:none}
 }
+/* Motion. Cards and tiles lift and icons and buttons spring under a real pointer; a golden light breathes
+   behind the banner art all the time. The reduced-motion rule below stills every part of it. */
+@media (hover:hover){
+  .post:not(.empty),.paths li,.part .shot,.kingdom{transition:transform .28s cubic-bezier(.2,.7,.2,1),box-shadow .28s}
+  .post:not(.empty):hover,.paths li:hover,.part .shot:hover,.kingdom:hover{transform:translateY(-7px);box-shadow:0 24px 46px rgba(0,0,0,.38)}
+
+  .follow img,.site-footer li a.with-ico img{transition:transform .22s cubic-bezier(.3,1.7,.5,1),filter .2s,opacity .2s}
+  .follow a:hover img,.follow a:focus-visible img{transform:scale(1.28)}
+  .site-footer li a.with-ico:hover img{transform:scale(1.25)}
+  .btn{transition:transform .22s cubic-bezier(.3,1.7,.5,1),background-color .2s,border-color .2s,filter .2s}
+  .btn:hover{transform:translateY(-3px) scale(1.05)}
+  .site-nav a:not(.btn){transition:transform .2s cubic-bezier(.3,1.7,.5,1),border-color .2s}
+  .site-nav a:not(.btn):hover{transform:translateY(-2px)}
+}
+.game-banner::after{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;opacity:.6;background:radial-gradient(30% 44% at 63% 24%,rgba(255,200,96,.62),rgba(255,168,58,.2) 46%,transparent 72%);mix-blend-mode:screen;animation:banner-glow 4.2s ease-in-out infinite alternate}
+@keyframes banner-glow{from{opacity:.15}to{opacity:1}}
+@media (max-width:760px){
+  /* on phones the art sits above the words, so the light covers only the picture */
+  .game-banner::after{z-index:0;inset:0 0 auto 0;aspect-ratio:16/10;background:radial-gradient(46% 52% at 50% 24%,rgba(255,200,96,.6),rgba(255,168,58,.2) 46%,transparent 72%)}
+}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none !important;transition:none !important}
