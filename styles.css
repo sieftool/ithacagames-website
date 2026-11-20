@@ -111,8 +111,6 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:700;line-height:1.06;letter-s
 /* Bands: each one is a sheet whose rounded top lies over the band before it */
 main > section{position:relative;padding-block:var(--pad) calc(var(--pad) + var(--r-sheet));background:var(--bg);color:var(--text);scroll-margin-top:72px}
 main > section + section{margin-top:calc(var(--r-sheet) * -1);border-radius:var(--r-sheet) var(--r-sheet) 0 0}
-/* the hero and the sheet after it are both dark, so a brass line marks where one ends and the other begins */
-main > .hero + section{border-top:3px solid var(--brass)}
 
 /* Hero: the photograph fills the band, the words sit on its quiet side */
 main > .hero{padding:0;overflow:hidden;isolation:isolate;background:#17100a}
@@ -125,8 +123,9 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;background:#17100a}
 .hero .lede{margin-top:1.3rem;max-width:33em;color:var(--copy);font-size:1.18rem;line-height:1.55}
 .hero .lede strong{color:var(--text);font-weight:600}
 
-/* The game: one band per part (banner, about, trailer, paths, kingdoms, components, Gamefound),
-   alternating ink, paper and coffee so each part reads as its own sheet */
+/* The game: one band per part, alternating light and dark from the very first one, so the
+   paper sheet of the banner already stands apart from the dark hero above it:
+   banner (paper), about (coffee), trailer (paper), paths (ink), kingdoms (paper), components + Gamefound (ink) */
 .game{--pad:clamp(48px,6.5vw,84px)}
 .game > .wrap > :first-child{margin-top:0}
 .game.band-light{
@@ -136,8 +135,9 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;background:#17100a}
 .game.band-coffee{--bg:#2a1d14}
 /* dark tiles keep light words even on a paper band */
 .paths li{--text:#f6efe0; --copy:#ddd5c5; --accent:var(--brass); color:var(--text)}
-.band-light .boxshot img{filter:drop-shadow(0 26px 30px rgba(0,0,0,.4))}
-.band-light .part img{filter:drop-shadow(0 16px 20px rgba(0,0,0,.45))}
+/* the banner and the kingdom cards are dark objects too, whatever band they sit on */
+.game-banner{--text:#f6efe0; --copy:#ddd5c5; --muted:#b5ab98; --accent:var(--brass); --link:#8fd6c4; color:var(--text)}
+.kingdom{--text:#f6efe0; --muted:#cfc6b4; color:var(--text)}
 
 /* The game */
 .game-banner{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;min-height:clamp(400px,42vw,540px);padding:clamp(24px,4.4vw,56px);border-radius:var(--r-lg);background:#17130f}
