@@ -318,7 +318,7 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;background:#17100a}
 @media (max-width:335px){
   .follow{display:none}
 }
-/* Motion. Cards and tiles lift and icons and buttons spring under a real pointer; a golden light breathes
+/* Motion. Cards, tiles and the box lift and icons and buttons spring under a real pointer; a golden light breathes
    behind the banner art all the time. The reduced-motion rule below stills every part of it. */
 @media (hover:hover){
   .post:not(.empty),.paths li,.part .shot,.kingdom{transition:transform .28s cubic-bezier(.2,.7,.2,1),box-shadow .28s}
@@ -331,6 +331,9 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;background:#17100a}
   .btn:hover{transform:translateY(-3px) scale(1.05)}
   .site-nav a:not(.btn){transition:transform .2s cubic-bezier(.3,1.7,.5,1),border-color .2s}
   .site-nav a:not(.btn):hover{transform:translateY(-2px)}
+
+  .boxshot img{transition:transform .34s cubic-bezier(.3,1.5,.5,1),filter .3s}
+  .boxshot img:hover{transform:translateY(-8px) scale(1.05);filter:drop-shadow(0 42px 46px rgba(0,0,0,.72))}
 }
 .game-banner::after{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;opacity:.6;background:radial-gradient(30% 44% at 63% 24%,rgba(255,200,96,.62),rgba(255,168,58,.2) 46%,transparent 72%);mix-blend-mode:screen;animation:banner-glow 4.2s ease-in-out infinite alternate}
 @keyframes banner-glow{from{opacity:.15}to{opacity:1}}
