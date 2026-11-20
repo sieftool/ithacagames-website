@@ -111,6 +111,8 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:700;line-height:1.06;letter-s
 /* Bands: each one is a sheet whose rounded top lies over the band before it */
 main > section{position:relative;padding-block:var(--pad) calc(var(--pad) + var(--r-sheet));background:var(--bg);color:var(--text);scroll-margin-top:72px}
 main > section + section{margin-top:calc(var(--r-sheet) * -1);border-radius:var(--r-sheet) var(--r-sheet) 0 0}
+/* the hero and the sheet after it are both dark, so a brass line marks where one ends and the other begins */
+main > .hero + section{border-top:3px solid var(--brass)}
 
 /* Hero: the photograph fills the band, the words sit on its quiet side */
 main > .hero{padding:0;overflow:hidden;isolation:isolate;background:#17100a}
