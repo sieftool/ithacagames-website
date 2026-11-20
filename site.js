@@ -71,9 +71,74 @@
     });
   }
 
+  /* Touch screens have no hover. There, whatever sits on the middle of the screen is lifted the way a
+     pointer would lift it, and a finished tap pops the button, icon, link or card that was tapped.
+     The looks are in styles.css (.is-focus, .is-pop); this only adds and removes those two classes. */
+  var refreshMotion = (function () {
+    var mq = function (q) { return !!(window.matchMedia && window.matchMedia(q).matches); };
+    if (!mq('(hover:none),(pointer:coarse)') || mq('(prefers-reduced-motion:reduce)')) return null;
+    if (!window.requestAnimationFrame || !document.documentElement.closest) return null;
+
+    var CARDS = '.post:not(.empty),.paths li,.part .shot,.kingdom,.boxshot img';
+    var FOCUS = CARDS + ',.trailer-link';
+    var TAP = '.btn,.follow a,.site-footer li a.with-ico,.site-nav a:not(.btn),' + CARDS;
+
+    var waiting = false;
+    function request() {
+      if (waiting) return;
+      waiting = true;
+      window.requestAnimationFrame(frame);
+    }
+    function frame() {
+      waiting = false;
+      var head = document.querySelector('.site-header');
+      var top = head ? Math.max(0, head.getBoundingClientRect().bottom) : 0;
+      var mid = (top + window.innerHeight) / 2;   // the middle of what shows below the header
+      var items = Array.prototype.slice.call(document.querySelectorAll(FOCUS));
+      var rects = items.map(function (n) { return n.getBoundingClientRect(); });
+      items.forEach(function (n, i) {
+        var r = rects[i];
+        if (!r.width && !r.height) return;
+        var has = n.classList.contains('is-focus');
+        /* a lifted card sits a few pixels higher than at rest, so it gets that much slack before it lets go */
+        var hit = r.top <= mid && r.bottom + (has ? 8 : 0) >= mid;
+        if (hit !== has) n.classList.toggle('is-focus', hit);
+      });
+    }
+    window.addEventListener('scroll', request, { passive: true });
+    window.addEventListener('resize', request);
+    window.addEventListener('load', request);
+
+    /* a tap, not a scroll: the finger comes up close to where it went down, and soon */
+    var down = null;
+    document.addEventListener('pointerdown', function (ev) {
+      down = ev.pointerType === 'mouse' ? null : { id: ev.pointerId, x: ev.clientX, y: ev.clientY, t: Date.now() };
+    }, { passive: true });
+    document.addEventListener('pointercancel', function () { down = null; }, { passive: true });
+    document.addEventListener('pointerup', function (ev) {
+      var d = down;
+      down = null;
+      if (!d || d.id !== ev.pointerId) return;
+      if (Math.abs(ev.clientX - d.x) > 12 || Math.abs(ev.clientY - d.y) > 12 || Date.now() - d.t > 700) return;
+      var n = ev.target && ev.target.closest ? ev.target.closest(TAP) : null;
+      if (!n) return;
+      n.classList.remove('is-pop');
+      void n.offsetWidth;   // restart the pop if it was still running
+      n.classList.add('is-pop');
+    }, { passive: true });
+    document.addEventListener('animationend', function (ev) {
+      if (String(ev.animationName).indexOf('tap-') !== 0) return;
+      var n = ev.target.closest ? ev.target.closest('.is-pop') : null;
+      if (n) n.classList.remove('is-pop');
+    });
+
+    return request;
+  })();
+
   function init() {
     renderNews();
     setUpTrailer();
+    if (refreshMotion) refreshMotion();
     var year = document.getElementById('year');
     if (year) year.textContent = new Date().getFullYear();
   }
