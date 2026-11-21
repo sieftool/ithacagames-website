@@ -1,0 +1,374 @@
+/* Ithaca Games.
+   Layout: art-led bands stacked as rounded sheets; content in rounded tiles and cards; pill buttons.
+   Colour is flat (no textures): paper, ink, table green and brass, with coral for the main action.
+   Every band restates the surface tokens (--bg, --text, --copy, --muted, --accent, --link, --line),
+   and components only ever read those tokens. Type: Marcellus for headings and the menu (flared Roman letters, kin to the ASSERTION wordmark) and
+   Alegreya Sans for reading. Both are served from fonts/ (SIL Open Font License). */
+
+@font-face{font-family:"Marcellus";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/marcellus-400.woff2") format("woff2")}
+@font-face{font-family:"Alegreya Sans";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/alegreya-sans-400.woff2") format("woff2")}
+@font-face{font-family:"Alegreya Sans";font-style:italic;font-weight:400;font-display:swap;src:url("fonts/alegreya-sans-400i.woff2") format("woff2")}
+@font-face{font-family:"Alegreya Sans";font-style:normal;font-weight:700;font-display:swap;src:url("fonts/alegreya-sans-700.woff2") format("woff2")}
+
+:root{
+  /* palette */
+  --paper:#f7f1e3;
+  --card:#fffaf0;
+  --ink:#131210;
+  --tile:#211f1b;
+  --green:#0f3b2f;
+  --green-card:#15493b;
+  --night:#0b0c0b;
+  --brass:#e6b85c;
+  --coral:#ea543a;
+  --wei:#e58e33;
+  --wu:#7c82d6;
+  --shu:#73ab58;
+
+  /* surface tokens: the default surface is paper */
+  --bg:var(--paper);
+  --text:#17261f;
+  --copy:#31443a;
+  --muted:#5b6d60;
+  --accent:#176a50;
+  --link:#176a50;
+  --line:rgba(23,38,31,.16);
+  --ghost-line:rgba(23,38,31,.42);
+  --primary:#ea543a;
+  --primary-hover:#f2684f;
+  --on-primary:#1c0b06;
+
+  /* type */
+  --display:"Marcellus","Optima","Palatino Linotype",Georgia,serif;
+  --body:"Alegreya Sans","Gill Sans","Trebuchet MS",system-ui,sans-serif;
+
+  /* shape and rhythm */
+  --r-sheet:clamp(26px,4vw,44px);
+  --r-lg:clamp(20px,2.4vw,28px);
+  --r-md:18px;
+  --gutter:clamp(18px,4vw,48px);
+  --max:1180px;
+  --pad:clamp(56px,8vw,104px);
+  color-scheme:light;
+}
+
+/* dark surfaces */
+.announce,.hero,.game,.site-footer{
+  --bg:var(--ink); --text:#f6efe0; --copy:#ddd5c5; --muted:#b5ab98; --accent:var(--brass); --link:#8fd6c4;
+  --line:rgba(246,239,224,.14); --ghost-line:rgba(246,239,224,.5);
+}
+/* green surfaces */
+.news,.plaque,.contact{
+  --bg:var(--green); --text:#f4ecd8; --copy:#dfe5d3; --muted:#a7bfab; --accent:var(--brass); --link:#8fd6c4;
+  --line:rgba(230,184,92,.24); --ghost-line:rgba(230,184,92,.6);
+}
+/* brass surface */
+.specs{
+  --bg:var(--brass); --text:#1d1508; --copy:#33270f; --muted:#4d3c18; --accent:#1d1508; --link:#1d1508;
+  --line:rgba(29,21,8,.22);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--night);color:var(--text);font:400 1.2rem/1.52 var(--body)}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--link)}
+p{margin:0}
+strong,b{font-weight:700}
+h1,h2,h3,h4{font-family:var(--display);font-weight:400;line-height:1.1;letter-spacing:.004em;margin:0;text-wrap:balance}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+.eyebrow{font:700 1.04rem/1.2 var(--body);letter-spacing:0;color:var(--accent)}
+.title{font-size:clamp(1.95rem,3.5vw,2.95rem);margin-top:12px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:.9em 1.5em;font:700 1.1rem/1 var(--body);text-decoration:none;border:1px solid transparent;border-radius:999px;transition:transform .2s,background-color .2s,border-color .2s,filter .2s}
+.btn-primary{background:var(--primary);color:var(--on-primary)}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-2px)}
+.btn-ghost{border-color:var(--ghost-line);color:var(--text)}
+.btn-ghost:hover{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.btn-gamefound{background:linear-gradient(135deg,#1fbf74,#4ded9e);color:#15142b}
+.btn-gamefound:hover{filter:brightness(1.08);transform:translateY(-2px)}
+.btn-bgg{background:#3f3b60;color:#fff;box-shadow:inset 0 -3px 0 #fc5000}
+.btn-bgg:hover{background:#4c4775;transform:translateY(-2px)}
+.btn-discord{background:#4459b3;color:#fff}
+.btn-facebook{background:linear-gradient(180deg,#0d8ef4,#0065e6);color:#fff}
+.btn-instagram{background:linear-gradient(45deg,#feaf48 -25%,#e4485f 22%,#da3582 52%,#994cc1 88%);color:#fff}
+.btn-discord:hover,.btn-facebook:hover,.btn-instagram:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:1.8rem}
+
+/* Announcement bar */
+.announce{margin:0;padding:9px var(--gutter);background:var(--bg);color:var(--text);text-align:center;font-size:.95rem;line-height:1.35}
+.announce a{color:inherit;text-decoration:none}
+.announce a span{color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.announce a:hover span{color:var(--text)}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:20;background:rgba(247,241,227,.94);color:var(--text);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.site-header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 28px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
+.brand img{width:44px}
+.brand span{font:400 1.36rem/1 var(--display);letter-spacing:.01em}
+/* Follow us: small round social marks beside the brand, grey until pointed at */
+.follow{display:flex;align-items:center;gap:10px;margin-right:auto}
+.follow-label{margin-right:2px;font:700 1rem/1 var(--body);color:var(--muted)}
+.follow a{display:block;border-radius:50%;line-height:0}
+.follow img{width:26px;height:26px;border-radius:50%;filter:grayscale(1);opacity:.6;transition:filter .2s,opacity .2s}
+.follow a:hover img,.follow a:focus-visible img{filter:none;opacity:1}
+.site-nav ul{display:flex;flex-wrap:wrap;align-items:center;gap:4px 28px;list-style:none;margin:0;padding:0}
+.site-nav a:not(.btn){display:block;padding:8px 0;color:var(--text);text-decoration:none;font:400 .86rem/1 var(--display);letter-spacing:.14em;text-transform:uppercase;border-bottom:2px solid transparent}
+.site-nav a:not(.btn):hover,.site-nav a[aria-current="page"]{border-color:var(--accent)}
+.site-nav .btn{padding:.8em 1.2em;font-size:.95rem}
+
+/* Bands: each one is a sheet whose rounded top lies over the band before it */
+main > section{position:relative;padding-block:var(--pad) calc(var(--pad) + var(--r-sheet));background:var(--bg);color:var(--text);scroll-margin-top:72px}
+main > section + section{margin-top:calc(var(--r-sheet) * -1);border-radius:var(--r-sheet) var(--r-sheet) 0 0}
+
+/* Hero: the game itself. Its key art runs off the right of the band and fades into the dark on the left,
+   where the title, the tagline and the two ways to follow it sit. */
+main > .hero{padding:0;overflow:hidden;isolation:isolate;--bg:#17130f}
+.hero-art{position:absolute;z-index:-1;top:0;left:68%;height:100%;aspect-ratio:2000/1162;transform:translateX(-50%)}
+.hero-art img{width:100%;height:100%;max-width:none;object-fit:cover;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 32%,#000 86%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 32%,#000 86%,transparent 100%)}
+.hero .wrap{display:flex;align-items:center;min-height:clamp(460px,43vw,660px);padding-block:48px calc(48px + var(--r-sheet))}
+.hero-copy{width:min(44%,480px)}
+.hero .tagline{white-space:nowrap}
+.hero .actions{margin-top:1.6rem}
+
+/* The game: one band per part, alternating light and dark from the very first one, so the
+   paper sheet of the facts strip already stands apart from the dark hero above it:
+   facts (paper), about + components (coffee), trailer (paper), paths (ink), cards (paper), Gamefound (ink) */
+.game{--pad:clamp(48px,6.5vw,84px)}
+.game > .wrap > :first-child{margin-top:0}
+.game.specs-band{--pad:clamp(20px,3vw,30px)}   /* the facts strip: a slim band of its own under the hero */
+.game.band-light{
+  --bg:var(--paper); --text:#17261f; --copy:#31443a; --muted:#5b6d60; --accent:#176a50; --link:#176a50;
+  --line:rgba(23,38,31,.16); --ghost-line:rgba(23,38,31,.42);
+}
+.game.band-coffee{--bg:#2a1d14}
+/* dark tiles keep light words even on a paper band */
+.paths li{--text:#f6efe0; --copy:#ddd5c5; --accent:var(--brass); color:var(--text)}
+/* the cards are dark objects too, whatever band they sit on */
+.kingdom{--text:#f6efe0; --muted:#cfc6b4; color:var(--text)}
+
+/* The game */
+.lockup{display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin-top:14px}
+.lockup .word{width:min(100%,480px)}
+.lockup .sub{width:min(62%,250px)}
+.tagline{font:400 clamp(1.3rem,1.9vw,1.6rem)/1.2 var(--display);letter-spacing:.01em;color:var(--accent);margin-top:1.1rem}
+
+.specs{display:flex;flex-wrap:wrap;align-items:flex-start;gap:16px clamp(24px,4.5vw,56px);margin:16px 0 0;padding:20px clamp(22px,3.4vw,40px);border-radius:var(--r-md);background:var(--bg);color:var(--text)}
+.specs div{display:flex;flex-direction:column;gap:7px}
+.specs dt{font:700 1rem/1 var(--body);color:var(--muted)}
+.specs dd{margin:0;font:400 2rem/1 var(--display);letter-spacing:0;font-variant-numeric:lining-nums}
+.specs dd small{font:700 1.14rem/1.3 var(--body);letter-spacing:0}
+.specs .wide{flex:1 1 15rem}
+.specs .wide dd{font:700 1.14rem/1.3 var(--body);letter-spacing:0}
+
+.game-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(28px,5vw,72px);align-items:center;margin-top:clamp(48px,7vw,84px)}
+.game .copy h3,.paths-head h3,.kingdoms-head h3{font-size:clamp(1.95rem,3.5vw,2.95rem)}
+.game .copy p:not([class]){margin-top:1.05rem;max-width:36em;color:var(--copy)}
+.game .credits{margin-top:1.3rem;max-width:38em;font-size:.98rem;color:var(--muted)}
+.boxshot{position:relative;margin:0}
+.boxshot::before{content:"";position:absolute;inset:8% 4%;background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 28%,transparent),transparent);filter:blur(10px)}
+.boxshot img{position:relative;margin-inline:auto;width:auto;max-height:480px;filter:drop-shadow(0 30px 36px rgba(0,0,0,.65))}
+
+/* Trailer (always light ink over the film still) */
+.trailer{margin:clamp(48px,7vw,84px) 0 0;scroll-margin-top:90px}
+.trailer-link{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;border-radius:var(--r-lg);color:#f4ecdd;text-decoration:none}
+.trailer-link img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.trailer-link::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,14,12,.1),rgba(18,14,12,.2) 55%,rgba(18,14,12,.86))}
+.trailer-link:hover img{transform:scale(1.03)}
+.play{position:absolute;z-index:1;left:50%;top:50%;width:clamp(64px,9vw,96px);aspect-ratio:1/1;transform:translate(-50%,-50%);border-radius:50%;background:var(--coral);box-shadow:0 12px 40px rgba(0,0,0,.5);transition:transform .2s}
+.play::before{content:"";position:absolute;left:54%;top:50%;transform:translate(-50%,-50%);border-style:solid;border-width:.8em 0 .8em 1.3em;border-color:transparent transparent transparent #120e0c;font-size:clamp(14px,2vw,20px)}
+.trailer-link:hover .play{transform:translate(-50%,-50%) scale(1.08)}
+.trailer-label{position:absolute;z-index:1;left:clamp(18px,3vw,36px);bottom:clamp(16px,3vw,30px);display:flex;flex-direction:column;gap:6px}
+.trailer-label .eyebrow{color:#e9c476}
+.trailer-label strong{font:400 clamp(1.4rem,3vw,2.2rem)/1 var(--display);letter-spacing:0}
+.trailer iframe{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:var(--r-lg)}
+
+/* Paths to power: three tiles */
+.paths-head,.kingdoms-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 48px;margin-top:clamp(56px,8vw,100px)}
+.paths-head p,.kingdoms-head p{max-width:27em;color:var(--muted)}
+.paths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,20px);margin:1.8rem 0 0;padding:0;list-style:none}
+.paths li{padding:26px 26px 28px;border-radius:var(--r-md);background:var(--tile)}
+.paths h4{font-size:1.45rem;color:var(--accent)}
+.paths p{margin-top:.6rem;color:var(--copy)}
+
+/* Three kingdoms: one tinted card each */
+.kingdoms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,20px);margin:1.8rem 0 0;padding:0;list-style:none}
+.kingdom{display:flex;flex-direction:column;gap:18px;padding:22px 22px 26px;border-radius:var(--r-lg);background:linear-gradient(165deg,color-mix(in srgb,var(--k) 50%,#15130f),color-mix(in srgb,var(--k) 15%,#15130f) 72%)}
+.kingdom header{display:flex;align-items:center;gap:14px}
+.kingdom h4{font-size:1.6rem}
+.kingdom figure{margin:0;display:flex;flex-direction:column;gap:16px}
+.kingdom img{border-radius:10px;box-shadow:0 16px 30px rgba(0,0,0,.45);transform:rotate(-1.4deg);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.kingdom:nth-child(2) img{transform:rotate(1.2deg)}
+.kingdom:hover img{transform:rotate(0) translateY(-6px) scale(1.02)}
+.kingdom blockquote{margin:0;font:400 1.24rem/1.34 var(--display);letter-spacing:0}
+.kingdom figcaption{font-size:.92rem;color:var(--muted)}
+
+/* Components */
+.parts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,20px);margin:clamp(48px,7vw,84px) 0 0;padding:0;list-style:none}
+.part .shot{height:270px;display:grid;place-items:center;padding:24px;border-radius:var(--r-md);background:var(--tile)}
+.part img{width:auto;max-height:222px;filter:drop-shadow(0 16px 20px rgba(0,0,0,.55))}
+.part h4{font-size:1.3rem;margin-top:16px}
+.part p{margin-top:6px;color:var(--muted);font-size:1rem}
+/* the components sit under the About text and box, on the coffee band */
+.band-coffee .parts{margin-top:clamp(40px,5.5vw,64px)}
+.band-coffee .part .shot{background:#1c120b}
+
+/* Gamefound panel */
+.plaque{margin-top:clamp(52px,7vw,92px);padding:clamp(34px,6vw,68px) clamp(20px,5vw,60px);border-radius:var(--r-lg);background:radial-gradient(90% 130% at 50% 0%,#1a5a4b,var(--green) 72%);color:var(--text)}
+.plaque-inner{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.plaque img{width:170px}
+.plaque h3{font-size:clamp(1.95rem,3.5vw,2.95rem)}
+.plaque p{max-width:31em;color:var(--copy)}
+
+/* Studio */
+.studio .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,6vw,84px);align-items:center}
+.portrait{margin:0}
+.portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 18%;border-radius:var(--r-lg)}
+.portrait figcaption{margin-top:10px;font-size:.92rem;color:var(--muted)}
+.studio .copy p:not([class]){margin-top:1.05rem;max-width:36em;color:var(--copy)}
+.studio .copy .title + p:not([class]){margin-top:1.4rem;font-size:1.12em;color:var(--text)}
+.signoff{display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px;margin-top:2.2rem;padding:22px 26px;border-radius:var(--r-md);background:var(--card)}
+.signoff .logo{width:96px;flex:none}
+.signoff blockquote{flex:1 1 15rem;margin:0;font:400 1.24rem/1.34 var(--display);letter-spacing:0;color:var(--text)}
+
+/* News: cards */
+.posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.6vw,32px);list-style:none;margin:2rem 0 0;padding:0}
+/* each post is a light card on the green band, so where one ends and the next begins is plain */
+.post{--text:#17261f;--copy:#31443a;--muted:#5b6d60;--accent:#176a50;--link:#176a50;display:flex;flex-direction:column;overflow:hidden;border-radius:var(--r-lg);background:var(--card);color:var(--text);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.post-media{aspect-ratio:4/3;background:#0c2f26 url(images/ithaca-mark.png) center/96px auto no-repeat}
+.post-media img{width:100%;height:100%;object-fit:cover}
+.post-body{flex:1;display:flex;flex-direction:column;align-items:flex-start;padding:20px 22px 24px}
+.post time{align-self:flex-start;padding:.45em .8em;border-radius:999px;background:#e8dfc9;font:700 1rem/1 var(--body);color:var(--accent);font-variant-numeric:tabular-nums}
+.post h3{font-size:1.32rem;line-height:1.14;margin-top:.65rem}
+.post p{margin-top:.6rem;color:var(--copy);font-size:1rem;line-height:1.55}
+.post .more{margin-top:auto;font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.post .more::before{content:"";display:block;height:16px}
+.post .more:hover{color:var(--text)}
+.post.empty{display:block;grid-column:1/-1;padding:22px 24px;color:var(--muted)}
+.all-news{margin-top:28px}
+
+/* Contact: one panel */
+.contact{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px 48px;padding:clamp(28px,5vw,56px);border-radius:var(--r-lg);background:radial-gradient(80% 140% at 0% 0%,#1a5a4b,var(--green) 70%);color:var(--text)}
+.contact .actions{margin-top:0}
+/* on the home page the contact panel follows the studio on the same paper sheet, so it needs no top space of its own */
+.studio + .contact-sec{padding-top:0}
+.mail{margin-top:10px;font:400 clamp(1.5rem,4.4vw,2.7rem)/1.05 var(--display);letter-spacing:0;overflow-wrap:anywhere}
+.mail a{color:var(--text);text-decoration:none;border-bottom:2px solid color-mix(in srgb,var(--accent) 60%,transparent)}
+.mail a:hover{color:var(--accent)}
+.contact .note{margin-top:12px;color:var(--muted)}
+
+/* Footer */
+.site-footer{position:relative;margin-top:calc(var(--r-sheet) * -1);padding-block:clamp(44px,6vw,64px) 32px;border-radius:var(--r-sheet) var(--r-sheet) 0 0;--bg:var(--night);background:var(--bg);color:var(--text)}
+.site-footer .cols{display:grid;grid-template-columns:auto repeat(3,minmax(0,1fr));gap:32px clamp(28px,5vw,72px);align-items:start}
+.site-footer .logo{width:112px}
+.site-footer h2{font:700 1rem/1.2 var(--body);letter-spacing:0;color:var(--muted)}
+.site-footer ul{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:9px}
+.site-footer li a{color:var(--text);font-weight:700;text-decoration:none;border-bottom:1px solid transparent}
+.site-footer li a:hover{border-color:var(--accent)}
+.site-footer li a.with-ico{display:inline-flex;align-items:center;gap:10px;border-bottom:0}
+.site-footer li a.with-ico img{flex:none;width:22px;height:22px}
+.site-footer li a.with-ico span{border-bottom:1px solid transparent}
+.site-footer li a.with-ico:hover span{border-color:var(--accent)}
+.site-footer .legal{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:.92rem;color:var(--muted)}
+.site-footer .legal a{color:inherit}
+
+@media (max-width:900px){
+  .posts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .follow-label{display:none}
+}
+@media (max-width:860px){
+  .game-grid,.studio .wrap{grid-template-columns:minmax(0,1fr)}
+  .boxshot img{max-height:400px}
+  .kingdoms,.parts,.paths{grid-template-columns:minmax(0,1fr)}
+  .kingdom{max-width:520px}
+  .part .shot{height:230px}
+  .part img{max-height:182px}
+  .portrait{max-width:420px}
+  .site-footer .cols{grid-template-columns:minmax(0,1fr)}
+  .site-nav .nav-cta{display:none}
+  .follow{margin-left:auto;margin-right:0}
+  .site-nav ul{gap:4px 22px}
+
+}
+@media (max-width:860px){
+  /* Hero: the art on top, the title and the buttons centred beneath it */
+  .hero-art{position:relative;z-index:0;left:auto;width:100%;height:min(75vw,440px);aspect-ratio:auto;transform:none}
+  .hero-art img{object-position:50% 8%;-webkit-mask-image:linear-gradient(180deg,#000 0,#000 68%,transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 68%,transparent 100%)}
+  .hero .wrap{display:block;min-height:0;padding-block:0 calc(38px + var(--r-sheet));text-align:center}
+  .hero-copy{position:relative;width:auto;max-width:520px;margin:-26px auto 0}
+  .hero .lockup{align-items:center;margin-top:10px}
+  .hero .tagline{white-space:normal}
+  .hero .actions{justify-content:center}
+}
+@media (max-width:560px){
+  .posts{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:400px){
+  .site-header .wrap{column-gap:12px}
+  .brand{gap:10px}
+  .brand img{width:38px}
+  .brand span{font-size:1.16rem}
+  .site-nav a:not(.btn){font-size:.74rem;letter-spacing:.09em}
+  .follow{gap:6px}
+  .follow img{width:22px;height:22px}
+}
+@media (max-width:335px){
+  .follow{display:none}
+}
+/* Motion. Cards, tiles and the box lift and icons and buttons spring under a real pointer; a golden light breathes
+   behind the hero art all the time. The reduced-motion rule below stills every part of it. */
+@media (hover:hover){
+  .post:not(.empty),.paths li,.part .shot,.kingdom{transition:transform .28s cubic-bezier(.2,.7,.2,1),box-shadow .28s}
+  .post:not(.empty):hover,.paths li:hover,.part .shot:hover,.kingdom:hover{transform:translateY(-7px);box-shadow:0 24px 46px rgba(0,0,0,.38)}
+
+  .follow img,.site-footer li a.with-ico img{transition:transform .22s cubic-bezier(.3,1.7,.5,1),filter .2s,opacity .2s}
+  .follow a:hover img,.follow a:focus-visible img{transform:scale(1.28)}
+  .site-footer li a.with-ico:hover img{transform:scale(1.25)}
+  .btn{transition:transform .22s cubic-bezier(.3,1.7,.5,1),background-color .2s,border-color .2s,filter .2s}
+  .btn:hover{transform:translateY(-3px) scale(1.05)}
+  .site-nav a:not(.btn){transition:transform .2s cubic-bezier(.3,1.7,.5,1),border-color .2s}
+  .site-nav a:not(.btn):hover{transform:translateY(-2px)}
+
+  .boxshot img{transition:transform .34s cubic-bezier(.3,1.5,.5,1),filter .3s}
+  .boxshot img:hover{transform:translateY(-8px) scale(1.05);filter:drop-shadow(0 42px 46px rgba(0,0,0,.72))}
+}
+.hero-art::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.6;background:radial-gradient(40% 44% at 50% 20%,rgba(255,200,96,.62),rgba(255,168,58,.2) 46%,transparent 72%);mix-blend-mode:screen;animation:banner-glow 4.2s ease-in-out infinite alternate}
+@keyframes banner-glow{from{opacity:.15}to{opacity:1}}
+@media (max-width:860px){
+  /* stacked: the picture is cropped at the sides there, so the light is drawn wider to stay on the dragon */
+  .hero-art::after{background:radial-gradient(54% 46% at 50% 21%,rgba(255,200,96,.6),rgba(255,168,58,.2) 46%,transparent 72%)}
+}
+/* Touch screens have no hover, so there the same motion comes from scrolling and tapping. site.js adds the two
+   classes: .is-focus on whatever sits on the middle of the screen, .is-pop for a moment on whatever was tapped. */
+@media (hover:none),(pointer:coarse){
+  .follow img{filter:none;opacity:1}   /* no pointer to bring the colour in, so the icons keep it */
+  @media (prefers-reduced-motion:no-preference){
+    .post:not(.empty),.paths li,.part .shot,.kingdom{transition:transform .34s cubic-bezier(.2,.7,.2,1),box-shadow .34s}
+    .boxshot img{transition:transform .38s cubic-bezier(.3,1.5,.5,1),filter .3s}
+
+    .post:not(.empty).is-focus,.paths li.is-focus,.part .shot.is-focus,.kingdom.is-focus{transform:translateY(-6px) scale(1.02);box-shadow:0 24px 46px rgba(0,0,0,.4)}
+    .kingdom.is-focus img{transform:rotate(0) translateY(-6px) scale(1.02)}
+    .boxshot img.is-focus{transform:translateY(-8px) scale(1.05);filter:drop-shadow(0 42px 46px rgba(0,0,0,.72))}
+    .trailer-link.is-focus img{transform:scale(1.03)}
+    .trailer-link.is-focus .play{transform:translate(-50%,-50%) scale(1.08)}
+
+    .btn.is-pop{animation:tap-btn .42s cubic-bezier(.3,1.4,.5,1)}
+    .follow a.is-pop img,.site-footer li a.with-ico.is-pop img{animation:tap-ico .46s cubic-bezier(.3,1.4,.5,1)}
+    .site-nav a.is-pop{animation:tap-nav .36s cubic-bezier(.3,1.4,.5,1)}
+    .post:not(.empty).is-pop,.paths li.is-pop,.part .shot.is-pop,.kingdom.is-pop{animation:tap-card .5s cubic-bezier(.2,.7,.2,1)}
+    .boxshot img.is-pop{animation:tap-box .55s cubic-bezier(.2,.7,.2,1)}
+  }
+}
+/* only the peak is named, so each pop starts from and settles back to wherever the element already is */
+@keyframes tap-btn{45%{transform:translateY(-4px) scale(1.07)}}
+@keyframes tap-ico{45%{transform:scale(1.34)}}
+@keyframes tap-nav{45%{transform:translateY(-3px)}}
+@keyframes tap-card{45%{transform:translateY(-12px) scale(1.02);box-shadow:0 26px 48px rgba(0,0,0,.42)}}
+@keyframes tap-box{45%{transform:translateY(-12px) scale(1.07)}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none !important;transition:none !important}
+}
