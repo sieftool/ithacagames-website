@@ -4,6 +4,9 @@
   To add a post: copy one block { ... }, paste it at the top of the list
   and change the text. Newest posts are shown first.
 
+  news.html also holds a copy of these posts as plain HTML, for search engines.
+  Visitors always see this list; refresh the copy in news.html after changing it.
+
     date       YYYY-MM-DD
     title      the headline
     text       one or two short paragraphs

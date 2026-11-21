@@ -55,8 +55,37 @@
     <div class="wrap">
       <p class="eyebrow">From the studio</p>
       <h1 class="title">News</h1>
-      <ul class="posts" id="posts"></ul>
-      <noscript><p>Turn on JavaScript to read our news.</p></noscript>
+      <!-- A copy of the posts in news.js as plain HTML, so search engines can read them without running scripts.
+           site.js leaves it alone while it matches news.js, and redraws the cards once news.js has changed.
+           To refresh the copy: open this page in a browser and put the list it draws back here, data-stamp included. -->
+      <ul class="posts" id="posts" data-stamp="3-b9ggxj">
+        <li class="post">
+          <div class="post-media"><img src="images/trailer-poster.jpg" alt="" loading="lazy"></div>
+          <div class="post-body">
+            <time datetime="2026-11-19">19 November 2026</time>
+            <h3>Watch the Assertion: The Three Kingdoms trailer</h3>
+            <p>The trailer for Assertion: The Three Kingdoms is on YouTube. Watch it and share it with your gaming group.</p>
+            <a class="more" href="https://www.youtube.com/watch?v=EL9j1pClkqw" rel="noopener">Watch on YouTube</a>
+          </div>
+        </li>
+        <li class="post">
+          <div class="post-media"><img src="images/news-follow-wide.jpg" alt="" loading="lazy"></div>
+          <div class="post-body">
+            <time datetime="2026-11-12">12 November 2026</time>
+            <h3>Our Gamefound campaign preview is open</h3>
+            <p>The campaign for Assertion: The Three Kingdoms is coming to Gamefound and the preview page is open. More than 1,300 people follow it already. Follow now to get every update, and a free gift when you pledge.</p>
+            <a class="more" href="https://gamefound.com/en/projects/ithaca-board-games/assertion-the-three-kingdoms" rel="noopener">Follow on Gamefound</a>
+          </div>
+        </li>
+        <li class="post">
+          <div class="post-media"><img src="images/hero-wide-1200.jpg" alt="" loading="lazy"></div>
+          <div class="post-body">
+            <time datetime="2026-11-03">3 November 2026</time>
+            <h3>Welcome to the new Ithaca Games website</h3>
+            <p>This is the new home for our games and our news. Come back for updates on Assertion: The Three Kingdoms and on what we are working on next.</p>
+          </div>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -98,7 +127,7 @@
   </div>
 </footer>
 
-<script src="news.js?v=b6e45e14a9"></script>
-<script src="site.js?v=3748a14f91"></script>
+<script src="news.js?v=d8bcdcaec5"></script>
+<script src="site.js?v=593f9e0181"></script>
 </body>
 </html>

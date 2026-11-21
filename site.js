@@ -7,15 +7,32 @@
     return n;
   }
 
-  /* News: one card per post, newest first. A post without a picture shows the studio mark. */
+  /* A short fingerprint of the posts on show. It changes whenever a post is added, removed or edited. */
+  function newsStamp(posts) {
+    var s = JSON.stringify(posts.map(function (p) {
+      return [p.date, p.title, p.text, p.link, p.linkLabel, p.image];
+    }));
+    var h = 5381;
+    for (var i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0;
+    return posts.length + '-' + h.toString(36);
+  }
+
+  /* News: one card per post, newest first. A post without a picture shows the studio mark.
+     news.html already holds the cards as plain HTML, so they can be read without this script.
+     While that copy matches news.js it is left alone; once news.js changes, the cards are redrawn from it. */
   function renderNews() {
     var list = document.getElementById('posts');
-    if (!list || list.children.length) return;
+    if (!list) return;
+    if (!window.ITHACA_NEWS && list.children.length) return;   // news.js did not load: keep the copy
     var posts = (window.ITHACA_NEWS || []).slice().sort(function (a, b) {
       return a.date < b.date ? 1 : a.date > b.date ? -1 : 0;
     });
     var limit = parseInt(list.getAttribute('data-limit'), 10);
     if (limit) posts = posts.slice(0, limit);
+    var stamp = newsStamp(posts);
+    if (list.children.length && list.getAttribute('data-stamp') === stamp) return;
+    list.textContent = '';
+    list.setAttribute('data-stamp', stamp);
     var fmt = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 
     if (!posts.length) list.appendChild(el('li', 'post empty', 'No news yet. Check back soon.'));
