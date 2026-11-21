@@ -2,7 +2,13 @@
    Layout: art-led bands stacked as rounded sheets; content in rounded tiles and cards; pill buttons.
    Colour is flat (no textures): paper, ink, table green and brass, with coral for the main action.
    Every band restates the surface tokens (--bg, --text, --copy, --muted, --accent, --link, --line),
-   and components only ever read those tokens. Font: Montserrat (Google Fonts), a free stand-in for Proxima Nova. */
+   and components only ever read those tokens. Type: Marcellus for headings and the menu (flared Roman letters, kin to the ASSERTION wordmark) and
+   Alegreya Sans for reading. Both are served from fonts/ (SIL Open Font License). */
+
+@font-face{font-family:"Marcellus";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/marcellus-400.woff2") format("woff2")}
+@font-face{font-family:"Alegreya Sans";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/alegreya-sans-400.woff2") format("woff2")}
+@font-face{font-family:"Alegreya Sans";font-style:italic;font-weight:400;font-display:swap;src:url("fonts/alegreya-sans-400i.woff2") format("woff2")}
+@font-face{font-family:"Alegreya Sans";font-style:normal;font-weight:700;font-display:swap;src:url("fonts/alegreya-sans-700.woff2") format("woff2")}
 
 :root{
   /* palette */
@@ -33,8 +39,8 @@
   --on-primary:#1c0b06;
 
   /* type */
-  --display:"Montserrat","Avenir Next","Segoe UI",system-ui,sans-serif;
-  --body:"Montserrat","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --display:"Marcellus","Optima","Palatino Linotype",Georgia,serif;
+  --body:"Alegreya Sans","Gill Sans","Trebuchet MS",system-ui,sans-serif;
 
   /* shape and rhythm */
   --r-sheet:clamp(26px,4vw,44px);
@@ -64,18 +70,19 @@
 
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--night);color:var(--text);font:400 1.0625rem/1.62 var(--body)}
+body{margin:0;background:var(--night);color:var(--text);font:400 1.2rem/1.52 var(--body)}
 img{max-width:100%;height:auto;display:block}
 a{color:var(--link)}
 p{margin:0}
-h1,h2,h3,h4{font-family:var(--display);font-weight:700;line-height:1.06;letter-spacing:-.02em;margin:0;text-wrap:balance}
+strong,b{font-weight:700}
+h1,h2,h3,h4{font-family:var(--display);font-weight:400;line-height:1.1;letter-spacing:.004em;margin:0;text-wrap:balance}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
-.eyebrow{font:600 .95rem/1.2 var(--body);letter-spacing:0;color:var(--accent)}
-.title{font-size:clamp(2rem,4vw,3.25rem);font-weight:800;margin-top:12px}
+.eyebrow{font:700 1.04rem/1.2 var(--body);letter-spacing:0;color:var(--accent)}
+.title{font-size:clamp(1.95rem,3.5vw,2.95rem);margin-top:12px}
 
 /* Buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:.9em 1.5em;font:600 1rem/1 var(--body);text-decoration:none;border:1px solid transparent;border-radius:999px;transition:transform .2s,background-color .2s,border-color .2s,filter .2s}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:.9em 1.5em;font:700 1.1rem/1 var(--body);text-decoration:none;border:1px solid transparent;border-radius:999px;transition:transform .2s,background-color .2s,border-color .2s,filter .2s}
 .btn-primary{background:var(--primary);color:var(--on-primary)}
 .btn-primary:hover{background:var(--primary-hover);transform:translateY(-2px)}
 .btn-ghost{border-color:var(--ghost-line);color:var(--text)}
@@ -93,7 +100,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:700;line-height:1.06;letter-s
 /* Announcement bar */
 .announce{margin:0;padding:9px var(--gutter);background:var(--bg);color:var(--text);text-align:center;font-size:.95rem;line-height:1.35}
 .announce a{color:inherit;text-decoration:none}
-.announce a span{color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.announce a span{color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:3px}
 .announce a:hover span{color:var(--text)}
 
 /* Header */
@@ -101,15 +108,15 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:700;line-height:1.06;letter-s
 .site-header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 28px;padding-block:10px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
 .brand img{width:44px}
-.brand span{font:700 1.22rem/1 var(--display);letter-spacing:-.01em}
+.brand span{font:400 1.36rem/1 var(--display);letter-spacing:.01em}
 /* Follow us: small round social marks beside the brand, grey until pointed at */
 .follow{display:flex;align-items:center;gap:10px;margin-right:auto}
-.follow-label{margin-right:2px;font:600 .92rem/1 var(--body);color:var(--muted)}
+.follow-label{margin-right:2px;font:700 1rem/1 var(--body);color:var(--muted)}
 .follow a{display:block;border-radius:50%;line-height:0}
 .follow img{width:26px;height:26px;border-radius:50%;filter:grayscale(1);opacity:.6;transition:filter .2s,opacity .2s}
 .follow a:hover img,.follow a:focus-visible img{filter:none;opacity:1}
 .site-nav ul{display:flex;flex-wrap:wrap;align-items:center;gap:4px 28px;list-style:none;margin:0;padding:0}
-.site-nav a:not(.btn){display:block;padding:8px 0;color:var(--text);text-decoration:none;font:600 1rem/1 var(--body);border-bottom:2px solid transparent}
+.site-nav a:not(.btn){display:block;padding:8px 0;color:var(--text);text-decoration:none;font:400 .86rem/1 var(--display);letter-spacing:.14em;text-transform:uppercase;border-bottom:2px solid transparent}
 .site-nav a:not(.btn):hover,.site-nav a[aria-current="page"]{border-color:var(--accent)}
 .site-nav .btn{padding:.8em 1.2em;font-size:.95rem}
 
@@ -124,7 +131,7 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;--bg:#17130f}
 .hero-art img{width:100%;height:100%;max-width:none;object-fit:cover;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 32%,#000 86%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 32%,#000 86%,transparent 100%)}
 .hero .wrap{display:flex;align-items:center;min-height:clamp(460px,43vw,660px);padding-block:48px calc(48px + var(--r-sheet))}
 .hero-copy{width:min(44%,480px)}
-.hero .tagline{font-size:clamp(1.2rem,1.7vw,1.42rem);white-space:nowrap}
+.hero .tagline{white-space:nowrap}
 .hero .actions{margin-top:1.6rem}
 
 /* The game: one band per part, alternating light and dark from the very first one, so the
@@ -147,18 +154,18 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;--bg:#17130f}
 .lockup{display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin-top:14px}
 .lockup .word{width:min(100%,480px)}
 .lockup .sub{width:min(62%,250px)}
-.tagline{font:650 clamp(1.25rem,2vw,1.6rem)/1.2 var(--display);letter-spacing:-.02em;color:var(--accent);margin-top:1.1rem}
+.tagline{font:400 clamp(1.3rem,1.9vw,1.6rem)/1.2 var(--display);letter-spacing:.01em;color:var(--accent);margin-top:1.1rem}
 
 .specs{display:flex;flex-wrap:wrap;align-items:flex-start;gap:16px clamp(24px,4.5vw,56px);margin:16px 0 0;padding:20px clamp(22px,3.4vw,40px);border-radius:var(--r-md);background:var(--bg);color:var(--text)}
 .specs div{display:flex;flex-direction:column;gap:7px}
-.specs dt{font:600 .86rem/1 var(--body);color:var(--muted)}
-.specs dd{margin:0;font:800 1.7rem/1 var(--display);letter-spacing:-.02em;font-variant-numeric:lining-nums}
-.specs dd small{font:600 .95rem/1 var(--body);letter-spacing:0}
+.specs dt{font:700 1rem/1 var(--body);color:var(--muted)}
+.specs dd{margin:0;font:400 2rem/1 var(--display);letter-spacing:0;font-variant-numeric:lining-nums}
+.specs dd small{font:700 1.14rem/1.3 var(--body);letter-spacing:0}
 .specs .wide{flex:1 1 15rem}
-.specs .wide dd{font:600 1.05rem/1.3 var(--body);letter-spacing:0}
+.specs .wide dd{font:700 1.14rem/1.3 var(--body);letter-spacing:0}
 
 .game-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(28px,5vw,72px);align-items:center;margin-top:clamp(48px,7vw,84px)}
-.game .copy h3,.paths-head h3,.kingdoms-head h3{font-size:clamp(1.7rem,3vw,2.5rem);font-weight:800}
+.game .copy h3,.paths-head h3,.kingdoms-head h3{font-size:clamp(1.95rem,3.5vw,2.95rem)}
 .game .copy p:not([class]){margin-top:1.05rem;max-width:36em;color:var(--copy)}
 .game .credits{margin-top:1.3rem;max-width:38em;font-size:.98rem;color:var(--muted)}
 .boxshot{position:relative;margin:0}
@@ -176,7 +183,7 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;--bg:#17130f}
 .trailer-link:hover .play{transform:translate(-50%,-50%) scale(1.08)}
 .trailer-label{position:absolute;z-index:1;left:clamp(18px,3vw,36px);bottom:clamp(16px,3vw,30px);display:flex;flex-direction:column;gap:6px}
 .trailer-label .eyebrow{color:#e9c476}
-.trailer-label strong{font:800 clamp(1.4rem,3vw,2.2rem)/1 var(--display);letter-spacing:-.028em}
+.trailer-label strong{font:400 clamp(1.4rem,3vw,2.2rem)/1 var(--display);letter-spacing:0}
 .trailer iframe{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:var(--r-lg)}
 
 /* Paths to power: three tiles */
@@ -196,7 +203,7 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;--bg:#17130f}
 .kingdom img{border-radius:10px;box-shadow:0 16px 30px rgba(0,0,0,.45);transform:rotate(-1.4deg);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
 .kingdom:nth-child(2) img{transform:rotate(1.2deg)}
 .kingdom:hover img{transform:rotate(0) translateY(-6px) scale(1.02)}
-.kingdom blockquote{margin:0;font:500 1.14rem/1.32 var(--display);letter-spacing:-.012em}
+.kingdom blockquote{margin:0;font:400 1.24rem/1.34 var(--display);letter-spacing:0}
 .kingdom figcaption{font-size:.92rem;color:var(--muted)}
 
 /* Components */
@@ -210,7 +217,7 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;--bg:#17130f}
 .plaque{margin-top:clamp(52px,7vw,92px);padding:clamp(34px,6vw,68px) clamp(20px,5vw,60px);border-radius:var(--r-lg);background:radial-gradient(90% 130% at 50% 0%,#1a5a4b,var(--green) 72%);color:var(--text)}
 .plaque-inner{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
 .plaque img{width:170px}
-.plaque h3{font-size:clamp(1.7rem,3.6vw,2.7rem);font-weight:800}
+.plaque h3{font-size:clamp(1.95rem,3.5vw,2.95rem)}
 .plaque p{max-width:31em;color:var(--copy)}
 
 /* Studio */
@@ -222,7 +229,7 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;--bg:#17130f}
 .studio .copy .title + p:not([class]){margin-top:1.4rem;font-size:1.12em;color:var(--text)}
 .signoff{display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px;margin-top:2.2rem;padding:22px 26px;border-radius:var(--r-md);background:var(--card)}
 .signoff .logo{width:96px;flex:none}
-.signoff blockquote{flex:1 1 15rem;margin:0;font:500 1.14rem/1.36 var(--display);letter-spacing:-.012em;color:var(--text)}
+.signoff blockquote{flex:1 1 15rem;margin:0;font:400 1.24rem/1.34 var(--display);letter-spacing:0;color:var(--text)}
 
 /* News: cards */
 .posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.6vw,32px);list-style:none;margin:2rem 0 0;padding:0}
@@ -231,10 +238,10 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;--bg:#17130f}
 .post-media{aspect-ratio:4/3;background:#0c2f26 url(images/ithaca-mark.png) center/96px auto no-repeat}
 .post-media img{width:100%;height:100%;object-fit:cover}
 .post-body{flex:1;display:flex;flex-direction:column;align-items:flex-start;padding:20px 22px 24px}
-.post time{align-self:flex-start;padding:.45em .8em;border-radius:999px;background:#e8dfc9;font:600 .82rem/1 var(--body);color:var(--accent);font-variant-numeric:tabular-nums}
+.post time{align-self:flex-start;padding:.45em .8em;border-radius:999px;background:#e8dfc9;font:700 1rem/1 var(--body);color:var(--accent);font-variant-numeric:tabular-nums}
 .post h3{font-size:1.32rem;line-height:1.14;margin-top:.65rem}
 .post p{margin-top:.6rem;color:var(--copy);font-size:1rem;line-height:1.55}
-.post .more{margin-top:auto;font-weight:600;text-decoration:underline;text-underline-offset:4px}
+.post .more{margin-top:auto;font-weight:700;text-decoration:underline;text-underline-offset:4px}
 .post .more::before{content:"";display:block;height:16px}
 .post .more:hover{color:var(--text)}
 .post.empty{display:block;grid-column:1/-1;padding:22px 24px;color:var(--muted)}
@@ -243,7 +250,7 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;--bg:#17130f}
 /* Contact: one panel */
 .contact{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px 48px;padding:clamp(28px,5vw,56px);border-radius:var(--r-lg);background:radial-gradient(80% 140% at 0% 0%,#1a5a4b,var(--green) 70%);color:var(--text)}
 .contact .actions{margin-top:0}
-.mail{margin-top:10px;font:800 clamp(1.5rem,4.4vw,2.7rem)/1.05 var(--display);letter-spacing:-.028em;overflow-wrap:anywhere}
+.mail{margin-top:10px;font:400 clamp(1.5rem,4.4vw,2.7rem)/1.05 var(--display);letter-spacing:0;overflow-wrap:anywhere}
 .mail a{color:var(--text);text-decoration:none;border-bottom:2px solid color-mix(in srgb,var(--accent) 60%,transparent)}
 .mail a:hover{color:var(--accent)}
 .contact .note{margin-top:12px;color:var(--muted)}
@@ -252,9 +259,9 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;--bg:#17130f}
 .site-footer{position:relative;margin-top:calc(var(--r-sheet) * -1);padding-block:clamp(44px,6vw,64px) 32px;border-radius:var(--r-sheet) var(--r-sheet) 0 0;--bg:var(--night);background:var(--bg);color:var(--text)}
 .site-footer .cols{display:grid;grid-template-columns:auto repeat(3,minmax(0,1fr));gap:32px clamp(28px,5vw,72px);align-items:start}
 .site-footer .logo{width:112px}
-.site-footer h2{font:600 .95rem/1.2 var(--body);letter-spacing:0;color:var(--muted)}
+.site-footer h2{font:700 1rem/1.2 var(--body);letter-spacing:0;color:var(--muted)}
 .site-footer ul{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:9px}
-.site-footer li a{color:var(--text);font-weight:600;text-decoration:none;border-bottom:1px solid transparent}
+.site-footer li a{color:var(--text);font-weight:700;text-decoration:none;border-bottom:1px solid transparent}
 .site-footer li a:hover{border-color:var(--accent)}
 .site-footer li a.with-ico{display:inline-flex;align-items:center;gap:10px;border-bottom:0}
 .site-footer li a.with-ico img{flex:none;width:22px;height:22px}
@@ -298,7 +305,8 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;--bg:#17130f}
   .site-header .wrap{column-gap:12px}
   .brand{gap:10px}
   .brand img{width:38px}
-  .brand span{font-size:1.12rem}
+  .brand span{font-size:1.16rem}
+  .site-nav a:not(.btn){font-size:.74rem;letter-spacing:.09em}
   .follow{gap:6px}
   .follow img{width:22px;height:22px}
 }
