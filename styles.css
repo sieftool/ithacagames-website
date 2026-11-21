@@ -253,6 +253,8 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;--bg:#17130f}
 /* Contact: one panel */
 .contact{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px 48px;padding:clamp(28px,5vw,56px);border-radius:var(--r-lg);background:radial-gradient(80% 140% at 0% 0%,#1a5a4b,var(--green) 70%);color:var(--text)}
 .contact .actions{margin-top:0}
+/* on the home page the contact panel follows the studio on the same paper sheet, so it needs no top space of its own */
+.studio + .contact-sec{padding-top:0}
 .mail{margin-top:10px;font:400 clamp(1.5rem,4.4vw,2.7rem)/1.05 var(--display);letter-spacing:0;overflow-wrap:anywhere}
 .mail a{color:var(--text);text-decoration:none;border-bottom:2px solid color-mix(in srgb,var(--accent) 60%,transparent)}
 .mail a:hover{color:var(--accent)}
