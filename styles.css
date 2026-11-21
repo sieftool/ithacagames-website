@@ -35,7 +35,6 @@
   /* type */
   --display:"Montserrat","Avenir Next","Segoe UI",system-ui,sans-serif;
   --body:"Montserrat","Avenir Next","Segoe UI",system-ui,sans-serif;
-  --seal:"Noto Serif TC","Songti TC","PMingLiU","Noto Serif CJK TC",serif;
 
   /* shape and rhythm */
   --r-sheet:clamp(26px,4vw,44px);
@@ -198,7 +197,6 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;background:#17100a}
 .kingdoms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,20px);margin:1.8rem 0 0;padding:0;list-style:none}
 .kingdom{display:flex;flex-direction:column;gap:18px;padding:22px 22px 26px;border-radius:var(--r-lg);background:linear-gradient(165deg,color-mix(in srgb,var(--k) 50%,#15130f),color-mix(in srgb,var(--k) 15%,#15130f) 72%)}
 .kingdom header{display:flex;align-items:center;gap:14px}
-.seal{flex:none;width:52px;height:52px;display:grid;place-items:center;background:var(--coral);color:#f1e6d0;font:900 1.9rem/1 var(--seal);border-radius:10px;box-shadow:inset 0 0 0 3px var(--coral),inset 0 0 0 4px rgba(241,230,208,.7);transform:rotate(-4deg)}
 .kingdom h4{font-size:1.6rem}
 .kingdom figure{margin:0;display:flex;flex-direction:column;gap:16px}
 .kingdom img{border-radius:10px;box-shadow:0 16px 30px rgba(0,0,0,.45);transform:rotate(-1.4deg);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
