@@ -136,7 +136,7 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;--bg:#17130f}
 
 /* The game: one band per part, alternating light and dark from the very first one, so the
    paper sheet of the facts strip already stands apart from the dark hero above it:
-   facts (paper), about (coffee), trailer (paper), paths (ink), kingdoms (paper), components + Gamefound (ink) */
+   facts (paper), about + components (coffee), trailer (paper), paths (ink), cards (paper), Gamefound (ink) */
 .game{--pad:clamp(48px,6.5vw,84px)}
 .game > .wrap > :first-child{margin-top:0}
 .game.specs-band{--pad:clamp(20px,3vw,30px)}   /* the facts strip: a slim band of its own under the hero */
@@ -212,6 +212,9 @@ main > .hero{padding:0;overflow:hidden;isolation:isolate;--bg:#17130f}
 .part img{width:auto;max-height:222px;filter:drop-shadow(0 16px 20px rgba(0,0,0,.55))}
 .part h4{font-size:1.3rem;margin-top:16px}
 .part p{margin-top:6px;color:var(--muted);font-size:1rem}
+/* the components sit under the About text and box, on the coffee band */
+.band-coffee .parts{margin-top:clamp(40px,5.5vw,64px)}
+.band-coffee .part .shot{background:#1c120b}
 
 /* Gamefound panel */
 .plaque{margin-top:clamp(52px,7vw,92px);padding:clamp(34px,6vw,68px) clamp(20px,5vw,60px);border-radius:var(--r-lg);background:radial-gradient(90% 130% at 50% 0%,#1a5a4b,var(--green) 72%);color:var(--text)}
